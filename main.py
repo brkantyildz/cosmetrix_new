@@ -343,7 +343,6 @@ with recommender_tab2:
             skincaredf[['problem2', 'problem3']] = skincaredf[['problem2', 'problem3']].fillna('')
             skincaredf['problems'] = skincaredf[['problem1', 'problem2', 'problem3']].agg(','.join, axis=1)
             skincare_reviews = pd.merge(df_reviews, skincaredf, on='product_id', how='inner')
-            skincare_reviews = skincare_reviews.drop(columns=[ 'skin_tone', 'product_name_x', 'rating_y'])
             skin_type_counts = skincare_reviews.groupby(['product_id', 'skin_type']).size().unstack(fill_value=0)
             skincaredf = pd.merge(skincaredf, skin_type_counts, on='product_id', how='inner')
             average_ratings = skincare_reviews.groupby('product_id')['rating_x'].mean().reset_index()
