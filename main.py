@@ -21,6 +21,7 @@ def get_data():
 
 veriler = get_data()
 
+
 # Metin temizleme fonksiyonu (Türkçe karakterleri korur)
 def clean_text(text):
     if isinstance(text, str):
