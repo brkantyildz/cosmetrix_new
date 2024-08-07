@@ -157,7 +157,7 @@ with home_tab:
             </ul>
         </p>
         """, unsafe_allow_html=True)
-    col3.image('https://lh3.googleusercontent.com/d/1EKaLxls4et0LJVGrVk2PutNOJy_cSDZY=s400?authuser=0')
+    col3.image('https://lh3.googleusercontent.com/d/1StdekWq6sdEVOUdtEnQ_cIAL1ZbUWAVz=s420?authuser=1')
 
 #ürünler
 with graph_tab:
