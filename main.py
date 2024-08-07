@@ -11,8 +11,8 @@ st.set_page_config(layout='wide', page_title='CosmetriX')
 # Veri setlerini yükle ve birleştir
 @st.cache_data
 def get_data():
-    product_info = pd.read_csv('C:/Users/brkntyldz/PycharmProjects/pythonProject/pythonProject3/dataset/product_info.csv')
-    output_data = pd.read_excel('C:/Users/brkntyldz/PycharmProjects/pythonProject/pythonProject3/dataset/output.xlsx')
+    product_info = pd.read_csv('product_info.csv')
+    output_data = pd.read_excel('output.xlsx')
     df = pd.merge(product_info, output_data, on='product_id', how='left')
     df = df.loc[:, ~df.columns.duplicated()]
     df = df.rename(columns={'product_name_x': 'product_name', 'primary_category_x': 'primary_category',
@@ -331,11 +331,11 @@ with recommender_tab2:
 
     if st.button("Cilt Problemine Göre Öneri Al"):
         if problem:
-            df_products = pd.read_csv("C:/Users/brkntyldz/PycharmProjects/pythonProject/pythonProject3/dataset/product_info.csv")
-            chunks = [pd.read_csv(f"C:/Users/brkntyldz/PycharmProjects/pythonProject/pythonProject3/dataset/reviews_{i}-{j}_.csv") for i, j in
+            df_products = pd.read_csv("product_info.csv")
+            chunks = [pd.read_csv(f"reviews_{i}-{j}_.csv") for i, j in
                       [(0, 250), (250, 500), (500, 750), (750, 1250), (1250, 'end')]]
             df_reviews = pd.concat(chunks, ignore_index=True)
-            df_skincare = pd.read_excel('C:/Users/brkntyldz/PycharmProjects/pythonProject/pythonProject3/dataset/output.xlsx')
+            df_skincare = pd.read_excel('output.xlsx')
             skincare_products = df_products[df_products['primary_category'] == 'Skincare']
             skincare_products = skincare_products[['product_id', 'product_name', 'price_usd', 'rating', 'loves_count', 'reviews']]
             skincaredf = pd.merge(skincare_products, df_skincare, on='product_id', how='inner')
